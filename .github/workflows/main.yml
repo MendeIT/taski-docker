@@ -31,6 +31,7 @@ jobs:
         pip install -r ./backend/requirements.txt 
     - name: Test with flake8 and django tests
       env:
+        SECRET_KEY: secret_key_django
         POSTGRES_USER: admin
         POSTGRES_PASSWORD: admin2023
         POSTGRES_DB: django
