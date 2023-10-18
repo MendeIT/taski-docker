@@ -31,13 +31,13 @@ jobs:
         pip install -r ./backend/requirements.txt 
     - name: Test with flake8 and django tests
       env:
-        SECRET_KEY: secret_key_django
         POSTGRES_USER: admin
         POSTGRES_PASSWORD: admin2023
         POSTGRES_DB: django
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
       run: |
+        export SECRET_KEY="0-42!#@*6jqo)lv^+@-+&(-@kjke@xzk%)1!w)vz-1uwk71p)="
         python -m flake8 backend/
         cd backend/
         python manage.py test
