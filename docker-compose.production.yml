@@ -10,17 +10,22 @@ services:
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data
+
   backend:
     image: mendeit/taski_backend
     env_file: .env
+    container_name: taski_backend
     volumes:
-      - static_volume:/backend_static
+      - static_volume:/backend_static/static
+
   frontend:
     image: mendeit/taski_frontend
     env_file: .env
+    container_name: taski_frontend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static_volume:/frontend_static
+
   gateway:
     image: mendeit/taski_gateway
     env_file: .env

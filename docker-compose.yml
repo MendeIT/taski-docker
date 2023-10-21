@@ -8,24 +8,28 @@ services:
   db:
     image: postgres:13.10
     env_file: .env
+    container_name: taski_db
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   backend:
     build: ./backend/
     env_file: .env
+    container_name: taski_backend
     volumes:
-      - static:/backend_static
+      - static:/backend_static/static
 
   frontend:
     env_file: .env
     build: ./frontend/
+    container_name: taski_frontend
     volumes:
       - static:/frontend_static
     command: cp -r /app/build/. /frontend_static/
 
   gateway:
     build: ./gateway/
+    container_name: taski_gateway
     volumes:
       - static:/staticfiles/
     ports:
